@@ -8,4 +8,4 @@ from .redistock import RedistockNotObtained
 
 __all__ = [Redistock, RedistockNotObtained]
 
-__version__ = '0.1.2'
+__version__ = '0.1.3'

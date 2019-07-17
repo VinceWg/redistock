@@ -22,7 +22,7 @@ def conn_6380():
 
 
 def test_basic(conn_6379):
-    redis_lock = Redistock(conn_6379, LockKey, ttlms=10000)
+    redis_lock = Redistock(conn_6379, LockKey, ttl=1)
     redis_lock.acquire()
     assert redis_lock.lock
     redis_lock.release()
@@ -67,14 +67,14 @@ def test_timeout_lock(conn_6379):
 
 
 def test_timeout_gt_ttl(conn_6379):
-    with Redistock(conn_6379, LockKey, ttlms=1):
-        redis_lock = Redistock(conn_6379, LockKey)
+    with Redistock(conn_6379, LockKey, ttl=0.001):
+        redis_lock = Redistock(conn_6379, LockKey, timeout=1)
         assert redis_lock.acquire()
         redis_lock.release()
 
 
 def test_timeout_lt_ttl(conn_6379):
-    with Redistock(conn_6379, LockKey, ttl=10):
+    with Redistock(conn_6379, LockKey, ttl=3):
         redis_lock = Redistock(conn_6379, LockKey, timeout=2)
         assert not redis_lock.acquire()
         redis_lock.release()

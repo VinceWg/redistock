@@ -6,7 +6,7 @@ from setuptools import setup
 
 setup(
     name='redistock',
-    version='0.1.2',
+    version='0.1.3',
     author='Vincent',
     description='A cluster-supported distributed lock on Redis and Python',
     long_description=open('README.md').read(),

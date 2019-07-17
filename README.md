@@ -37,12 +37,12 @@ redis_conn = redis.StrictRedis(...)
 
 
 with Redistock(redis_conn, 'name', ttl=1):
-    # will be blocked for 10 seconds
+    # will be blocked for 1 seconds
     print('Obtained lock')
 
 
-with Redistock(redis_conn, 'name', ttlms=100):
-    # will be blocked for 100 milliseconds
+with Redistock(redis_conn, 'name', ttl=0.001):
+    # will be blocked for 1 milliseconds
     print('Obtained lock')
 
 
